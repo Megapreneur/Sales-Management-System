@@ -3,7 +3,7 @@ A demo task for maids.cc
 
 # Sales Management System using Spring Boot
 
-The Invoice and Payment Link is a comprehensive web application developed using Spring Boot, aimed at providing users with a feature-rich platform to efficiently manage and organize their invoice and collect payment. This README provides an overview of the system, installation instructions, usage guidelines, API documentation, and details for contributing to the project.
+The Sales Management System is a comprehensive web application developed using Spring Boot, aimed at providing users with a feature-rich platform to efficiently manage and organize their inventory, customer details and sales. This README provides an overview of the system, installation instructions and other details about the project.
 
 ## Table of Contents
 
@@ -92,43 +92,30 @@ mvn spring-boot:run
    sales.app.SecretKey=your_JWT_token
     ```
 
-### Invoice and Payment Link
-
-- **Create Invoice:** User passes their information and product details to create an invoice .
-- **Link to Invoice:** A link to view the generated invoice is returned to the user.
-- **Invoice:** User is routed to this endpoint to view generated invoice. The invoice generated can be viewed on this endpoint.
-- **Payment Link:** A unique payment link is generated and returned to the user to complete the transaction using the invoice Id.
-
 
 ## API Endpoints
 
-The Invoice and Payment Link System offers the following API endpoints:
+The Sales Management System offers the following API endpoints:
 
 - User's Registration: `POST /api/v1/user/create`
 - User's login: `POST /api/v1/auth/login`
 - Product creation: `POST /api/v1/product/create`
-- Get a product: `GET /api/v1/product/product`
-- Update a product: `PUT /api/v1/product/update`
+- Get a product: `GET /api/v1/product/product?productId={productId}`
+- Update a product: `PUT /api/v1/product/update?productId={productId}`
 - Get all products: `GET /api/v1/product/allProduct`
-- Delete a product: `DELETE /api/v1/product/delete`
+- Delete a product: `DELETE /api/v1/product/delete?productId={productId}`
 - Get product report: `GET /api/v1/product/reports/product`
-- Sales creation: `POST /api/v1/sales/create`
-- Get a sales: `GET /api/v1/sales/sales`
-- Update a sales: `PUT /api/v1/sales/update`
+- Sales creation: `POST /api/v1/sales/create?userId={userId}`
+- Get a sales: `GET /api/v1/sales/sales?salesId={salesId}`
+- Update a sales: `PUT /api/v1/sales/update?salesId={salesId}&?userId={userId}`
 - Get all sales: `GET /api/v1/sales/allTransactions`
-- Get sales report: `GET /api/v1/sales/reports/sales`
-- Client creation: `POST /api/v1/client/create`
-- Get a client: `GET /api/v1/client/client`
-- Update a client: `PUT /api/v1/client/update`
+- Get sales report: `GET /api/v1/sales/reports/sales?startDate={startDate}&?endDate={endDate}`
+- Client creation: `POST /api/v1/client/create?userId={userId}`
+- Get a client: `GET /api/v1/client/client?phoneNumber={phoneNumber}`
+- Update a client: `PUT /api/v1/client/update?phoneNumber={phoneNumber}`
 - Get all clients: `GET /api/v1/client/allClients`
-- Delete a client: `DELETE /api/v1/client/delete`
+- Delete a client: `DELETE /api/v1/client/delete?phoneNumber={phoneNumber}`
 - Get client report: `GET /api/v1/client/reports/client`
-- 
-- 
-- 
-- Generate link to invoice: `POST /api/v1/invoice/generate-invoice-link`
-- Route to generated invoice: `GET /api/v1/invoice/view-invoice/{merchantId}/{invoiceId}`
-- Generate Payment Link: `POST /api/v1/invoice//payment-link?invoiceId=invoiceId`
 
 
 ### Future Improvements

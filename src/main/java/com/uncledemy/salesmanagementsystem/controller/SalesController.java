@@ -34,7 +34,7 @@ public class SalesController {
         }
     }
     @GetMapping("/sales")
-    public ResponseEntity<Sales> findATransaction(@RequestParam long salesId) throws SalesManagementException {
+    public ResponseEntity<Sales> findATransaction(@Valid @RequestParam long salesId) throws SalesManagementException {
         Sales sales = salesService.findSalesById(salesId);
         return ResponseEntity.status(HttpStatus.OK).body(sales);
     }

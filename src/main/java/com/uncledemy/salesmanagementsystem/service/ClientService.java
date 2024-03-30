@@ -14,7 +14,5 @@ public interface ClientService {
     Client findClientByPhoneNumber(String phoneNumber) throws SalesManagementException;
     List<Client> getAllClient();
     ClientReportDto generateClientReport();
-
     boolean deleteClient(String phoneNumber) throws SalesManagementException;
-//    void downloadClientReport();
 }

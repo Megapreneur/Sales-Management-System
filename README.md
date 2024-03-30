@@ -11,21 +11,21 @@ The Invoice and Payment Link is a comprehensive web application developed using 
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
     - [Prerequisites Requirement](#prerequisites-requirement)
-    - [Optional Requirement](#optional-requirement)
     - [Installation](#installation)
-- [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Postman Documentation](#postman-documentation)
 
 
 ## Features
 
-This Sales Management System comes equipped with robust reporting features can provide valuable insights into sales performance, inventory management, customer behavior, and more.
-Here are some key features designed to make reporting efficient and effective:
+This Sales Management System comes equipped with robust reporting features can provide valuable insights into sales performance, inventory management, customer behavior, and more:
 
-- **Invoice Creation**: Users can easily create an invoice to send to their customers seamlessly.
-- **Unique Payment Link Generator**: Users can easily create a unique payment link to send to their customers to make payment easy and seamlessly.
-- **Integration Support**: The system offers well-defined API endpoints for seamless integration with external applications.
+- **Customer Management**: Store and manage customer information, including contact details, purchase history, preferences, and interactions.
+- **Product Management**: Maintain a catalog of products or services offered by the business.
+- **Inventory Management**: Monitor and manage inventory levels in real-time.
+- **Sales Order Processing**: Create and manage sales orders for products or services.
+- **Sales Tracking and Reporting**: Monitor sales performance and track key metrics such as revenue, profit margins, and sales growth.
+- **Quoting and Pricing**: Create and manage price quotes for products or services.
+- **User Access and Security**: Control user access levels and permissions to ensure data security and confidentiality.
 
 ## Technologies Used
 
@@ -35,10 +35,12 @@ The Invoice and Payment Link System leverages modern technologies to deliver a r
 - **Spring Boot**: A powerful framework for building robust and scalable applications.
 - **Spring Data JPA**: Provides data access and manipulation capabilities using the Java Persistence API.
 - **Spring Web**: Facilitates the creation of web APIs and interfaces.
-- **H2**: A widely-used in-memory database management system.
+- **Spring Security**: Ensures secure authentication and authorization within the application, guarding against unauthorized access and protecting sensitive data.
+- **JSON Web Token (JWT)**: Enables stateless authentication by securely transmitting user information as JSON objects, facilitating secure communication between the client and server.
+- **Auditor Aware**: Automatically tracks and records metadata about the user who created or modified entities, such as creation and modification timestamps, enhancing data auditing and accountability.
+- **MSQL**: A popular relational database management system used for storing and retrieving structured data efficiently.
 - **Maven**: Manages project dependencies and provides a structured build process.
 - **Git**: Version control for collaborative development.
-- **Docker**: Containerization lets you build, test, and deploy applications quickly.
 
 ## Getting Started
 
@@ -46,12 +48,10 @@ The Invoice and Payment Link System leverages modern technologies to deliver a r
 
 Before getting started, ensure you have the following components installed:
 
-1. **A docker file is on the project root directory, you would need docker installed on your local machine to run the docker file.**
-2. **This project was built using JDK 17, you would need JDK 17 installed on you local machine.**
+1. **This project was built using JDK 17, you would need JDK 17 installed on you local machine.**
 
 - [Java Development Kit (JDK 17)](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
-- [Docker](https://www.docker.com/products/docker-desktop/)
 
 
 ## Build and Run the Application:
@@ -64,26 +64,13 @@ mvn spring-boot:run
 ````
 
 
-
-### Optional Requirement
-
-1. **Docker.**
-- **The first command builds the docker image.**
-- **The second command runs the docker build.**
-
-    ```bash
-   docker build -t task:latest . 
-   
-   docker run -d -p 6040:6040 task:latest
-    ```
-
 ### Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/airnest97/payment-link-generator.git
-   cd oxygen-task
+   git clone https://github.com/Megapreneur/SalesManagementSystem.git
+   cd SalesManagementSystem
    ```
 
 2. **Configure the Database:**
@@ -91,16 +78,19 @@ mvn spring-boot:run
    Modify the `src/main/resources/application.properties` file to include your database connection details:
 
    ```properties
-   spring.datasource.url=jdbc:h2:mem:your_database_name
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   spring.datasource.url=your_database_jdbc_url
    spring.datasource.username=your_database_username
    spring.datasource.password=your_database_password
    ```
 
-## Access the Application
+3. **Token Requirements:**
 
-Open your browser and navigate to `http://localhost:6040` to access the Invoice and Payment Link System.
-
-## Usage
+   Modify the `src/main/resources/application.properties` file to include your JWT token:
+   
+    ```properties
+   sales.app.SecretKey=your_JWT_token
+    ```
 
 ### Invoice and Payment Link
 
@@ -109,17 +99,33 @@ Open your browser and navigate to `http://localhost:6040` to access the Invoice 
 - **Invoice:** User is routed to this endpoint to view generated invoice. The invoice generated can be viewed on this endpoint.
 - **Payment Link:** A unique payment link is generated and returned to the user to complete the transaction using the invoice Id.
 
-### API Integration
-
-If you need to integrate the Invoice and Payment Link System with other applications, you can use the provided API endpoints for seamless data exchange.
 
 ## API Endpoints
 
 The Invoice and Payment Link System offers the following API endpoints:
 
-### Book Endpoints
-
-- Create an invoice: `POST /api/v1/invoice/create`
+- User's Registration: `POST /api/v1/user/create`
+- User's login: `POST /api/v1/auth/login`
+- Product creation: `POST /api/v1/product/create`
+- Get a product: `GET /api/v1/product/product`
+- Update a product: `PUT /api/v1/product/update`
+- Get all products: `GET /api/v1/product/allProduct`
+- Delete a product: `DELETE /api/v1/product/delete`
+- Get product report: `GET /api/v1/product/reports/product`
+- Sales creation: `POST /api/v1/sales/create`
+- Get a sales: `GET /api/v1/sales/sales`
+- Update a sales: `PUT /api/v1/sales/update`
+- Get all sales: `GET /api/v1/sales/allTransactions`
+- Get sales report: `GET /api/v1/sales/reports/sales`
+- Client creation: `POST /api/v1/client/create`
+- Get a client: `GET /api/v1/client/client`
+- Update a client: `PUT /api/v1/client/update`
+- Get all clients: `GET /api/v1/client/allClients`
+- Delete a client: `DELETE /api/v1/client/delete`
+- Get client report: `GET /api/v1/client/reports/client`
+- 
+- 
+- 
 - Generate link to invoice: `POST /api/v1/invoice/generate-invoice-link`
 - Route to generated invoice: `GET /api/v1/invoice/view-invoice/{merchantId}/{invoiceId}`
 - Generate Payment Link: `POST /api/v1/invoice//payment-link?invoiceId=invoiceId`
@@ -127,13 +133,8 @@ The Invoice and Payment Link System offers the following API endpoints:
 
 ### Future Improvements
 
-Given the short time frame for the task, I could not implement security on the application endpoints. If given more time, I would add security to the application, thereby making the application more secured for usage in production.
+Given the short time frame for the task, I could not implement downloading of report into a pdf format
 
 
 
-## postman documentation
-
-For more detailed information about these API endpoints, refer to the API documentation.
-- [Postman Documentation Collection](https://documenter.getpostman.com/view/21596187/2sA35Bbj9C)
-
-
+.

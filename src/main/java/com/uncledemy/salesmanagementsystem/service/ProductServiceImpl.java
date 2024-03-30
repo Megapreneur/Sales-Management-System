@@ -79,7 +79,6 @@ public class ProductServiceImpl implements ProductService{
         ProductReportDto productReport = new ProductReportDto();
 
         try {
-            // 1. Inventory Status
             List<ProductInventoryDto> inventoryStatus = productRepository.findAll().stream()
                     .map(product -> {
                         ProductInventoryDto inventoryDTO = new ProductInventoryDto();
@@ -91,7 +90,6 @@ public class ProductServiceImpl implements ProductService{
                     .collect(Collectors.toList());
             productReport.setInventoryStatus(inventoryStatus);
 
-            // 2. Sales Performance
             List<ProductSalesDto> salesPerformance = productRepository.findAll().stream()
                     .map(product -> {
                         ProductSalesDto salesDTO = new ProductSalesDto();
@@ -109,7 +107,6 @@ public class ProductServiceImpl implements ProductService{
                     .collect(Collectors.toList());
             productReport.setSalesPerformance(salesPerformance);
 
-            // 3. Pricing Analysis
             List<BigDecimal> prices = productRepository.findAll().stream()
                     .map(Product::getPrice)
                     .toList();
@@ -131,7 +128,6 @@ public class ProductServiceImpl implements ProductService{
             logger.info("Product Report was generated and viewed by an ADMIN");
         } catch (Exception e) {
             logger.error("Error generating product report: {}", e.getMessage());
-            // Handle the exception or rethrow it as needed
         }
 
         return productReport;

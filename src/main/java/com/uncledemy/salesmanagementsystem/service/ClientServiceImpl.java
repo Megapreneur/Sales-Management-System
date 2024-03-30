@@ -129,7 +129,6 @@ public class ClientServiceImpl implements ClientService{
 
 
     private boolean isValidPhoneNumber(String phoneNumber) {
-        // Regular expression to match phone numbers containing only digits and '+'
         String regex = "^[0-9+]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(phoneNumber);

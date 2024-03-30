@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User loadUser(String username) throws InvalidUsernameException {
+    public User loadUser(String username){
         return userRepository.findUserByUsernameIgnoreCase(username);
     }
 

@@ -1,6 +1,5 @@
 package com.uncledemy.salesmanagementsystem.auditing;
 
-import com.uncledemy.salesmanagementsystem.model.User;
 import com.uncledemy.salesmanagementsystem.security.config.SecureUser;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

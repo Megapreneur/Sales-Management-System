@@ -14,13 +14,9 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public class APIError {
     private HttpStatus status;
-    //
-//    @JsonSerialize(using = LocalDateSerializer.class)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-//    private LocalDateTime time;
+
     private String message;
-//    private String debugMessage;
-//    private boolean ok;
+
 
     public APIError(){                  }
 
@@ -28,13 +24,11 @@ public class APIError {
         this();
         this.status =  status;
         this.message = "Unexpected Error";
-//        this.debugMessage = ex.getLocalizedMessage();
     }
     public APIError(HttpStatus status,String message, Throwable ex){
         this();
         this.status =  status;
         this.message = message;
-//        this.debugMessage = ex.getLocalizedMessage();
     }
 
     public String convertToJson() throws JsonProcessingException {

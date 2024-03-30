@@ -29,13 +29,10 @@ public class Sales {
     private Long id;
     @ManyToMany
     private Set<Product> products;
-
     @ManyToOne
     private Client client;
-
     @ManyToOne
     private User seller;
-
     private BigDecimal totalAmount;
     private int quantity;
     @CreatedDate

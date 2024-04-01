@@ -69,7 +69,7 @@ mvn spring-boot:run
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Megapreneur/SalesManagementSystem.git
+   git clone https://github.com/Megapreneur/Sales-Management-System.git
    cd SalesManagementSystem
    ```
 
